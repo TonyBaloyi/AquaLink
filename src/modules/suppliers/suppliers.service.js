@@ -58,7 +58,7 @@ async function create(input) {
         const { rows: [user] } = await client.query(
           `INSERT INTO users (id, name, email, phone, role)
            VALUES ($1,$2,$3,$4,'supplier') RETURNING id`,
-          [createdAuthUser.id, input.name, input.contact_phone || null]
+          [createdAuthUser.id, input.name, input.account.email, input.contact_phone || null]
         );
         userId = user.id;
       }
